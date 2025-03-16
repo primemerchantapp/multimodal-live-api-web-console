@@ -46,7 +46,8 @@ export type LiveGenerationConfig = GenerationConfig & {
   speechConfig?: {
     voiceConfig?: {
       prebuiltVoiceConfig?: {
-        voiceName: "Puck" | "Charon" | "Kore" | "Fenrir" | "Aoede" | string;
+        // Set voiceName to "Charon"
+        voiceName: "Charon",
       };
     };
   };
@@ -63,7 +64,7 @@ export type LiveOutgoingMessage =
  */
 export type SetupMessage = {
   setup: LiveConfig;
-  systemPrompt?: string; // <-- Added systemPrompt here
+  systemPrompt?: string;
 };
 
 export type ClientContentMessage = {
