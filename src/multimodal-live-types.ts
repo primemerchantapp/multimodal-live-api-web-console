@@ -24,15 +24,15 @@ import type {
 } from "@google/generative-ai";
 
 /**
- * this module contains type-definitions and Type-Guards
+ * This module contains type-definitions and Type-Guards
  */
 
-// Type-definitions
+// Type Definitions
 
-/* outgoing types */
+/* Outgoing Types */
 
 /**
- * the config to initiate the session
+ * The config to initiate the session
  */
 export type LiveConfig = {
   model: string;
@@ -58,8 +58,12 @@ export type LiveOutgoingMessage =
   | RealtimeInputMessage
   | ToolResponseMessage;
 
+/**
+ * SetupMessage includes the systemPrompt now.
+ */
 export type SetupMessage = {
   setup: LiveConfig;
+  systemPrompt?: string; // <-- Added systemPrompt here
 };
 
 export type ClientContentMessage = {
@@ -88,7 +92,7 @@ export type LiveFunctionResponse = {
   id: string;
 };
 
-/** Incoming types */
+/** Incoming Types */
 
 export type LiveIncomingMessage =
   | ToolCallCancellationMessage
@@ -138,7 +142,7 @@ export type ToolCall = {
   functionCalls: LiveFunctionCall[];
 };
 
-/** log types */
+/** Log Types */
 export type StreamingLog = {
   date: Date;
   type: string;
@@ -151,7 +155,7 @@ export type StreamingLog = {
 const prop = (a: any, prop: string, kind: string = "object") =>
   typeof a === "object" && typeof a[prop] === "object";
 
-// outgoing messages
+// Outgoing Messages
 export const isSetupMessage = (a: unknown): a is SetupMessage =>
   prop(a, "setup");
 
@@ -164,7 +168,7 @@ export const isRealtimeInputMessage = (a: unknown): a is RealtimeInputMessage =>
 export const isToolResponseMessage = (a: unknown): a is ToolResponseMessage =>
   prop(a, "toolResponse");
 
-// incoming messages
+// Incoming Messages
 export const isSetupCompleteMessage = (a: unknown): a is SetupCompleteMessage =>
   prop(a, "setupComplete");
 
